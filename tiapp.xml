@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?><ti:app xmlns:ti="http://ti.appcelerator.org">
+	<id>net.a2system.accelerometer</id>
+	<name>titanium-accelerometer</name>
+	<version>1.0</version>
+	<publisher>not specified</publisher>
+	<url/>
+	<description/>
+	<copyright>not specified</copyright>
+	<icon>appicon.png</icon>
+	<fullscreen>false</fullscreen>
+	<navbar-hidden>false</navbar-hidden>
+	<analytics>true</analytics>
+	<guid>3c9558c5-5330-45e9-9d40-27f25457b33c</guid>
+	<property name="ti.ui.defaultunit" type="string">dp</property>
+	<property name="run-on-main-thread" type="bool">true</property>
+
+	<ios>
+		<enable-launch-screen-storyboard>true</enable-launch-screen-storyboard>
+		<use-app-thinning>true</use-app-thinning>
+		<plist>
+			<dict>
+				<key>UISupportedInterfaceOrientations~iphone</key>
+				<array>
+					<string>UIInterfaceOrientationPortrait</string>
+				</array>
+				<key>NSLocationAlwaysUsageDescription</key>
+				<string>
+					To let the user know their location on the map.
+				</string>
+				<key>UISupportedInterfaceOrientations~ipad</key>
+				<array>
+					<string>UIInterfaceOrientationPortrait</string>
+					<string>UIInterfaceOrientationPortraitUpsideDown</string>
+					<string>UIInterfaceOrientationLandscapeLeft</string>
+					<string>UIInterfaceOrientationLandscapeRight</string>
+				</array>
+				<key>UIRequiresPersistentWiFi</key>
+				<false/>
+				<key>UIPrerenderedIcon</key>
+				<false/>
+				<key>UIStatusBarHidden</key>
+				<false/>
+				<key>UIStatusBarStyle</key>
+				<string>UIStatusBarStyleDefault</string>
+				<!-- declaramos la app como location para que no se pare la ejecución en background a los 10min -->
+                <!-- https://developer.apple.com/library/content/documentation/iPhone/Conceptual/iPhoneOSProgrammingGuide/BackgroundExecution/BackgroundExecution.html#//apple_ref/doc/uid/TP40007072-CH4-SW4 -->
+                <key>UIBackgroundModes</key>
+                <array>
+                    <string>location</string>
+                </array>
+			</dict>
+		</plist>
+	</ios>
+	<android android:permission="android.permission.RECEIVE_BOOT_COMPLETED" xmlns:android="http://schemas.android.com/apk/res/android">
+		<property name="ti.android.bug2373.finishfalseroot" type="bool">true</property>
+		<property name="ti.android.bug2373.disableDetection" type="bool">true</property>
+		<property name="ti.android.bug2373.restartDelay" type="int">500</property>
+		<property name="ti.android.bug2373.finishDelay" type="int">0</property>
+		<property name="ti.android.bug2373.skipAlert" type="bool">true</property>
+		<property name="ti.android.bug2373.message">Initializing</property>
+		<property name="ti.android.bug2373.title">Restart Required</property>
+		<property name="ti.android.bug2373.buttonText">Continue</property>
+		<!-- <manifest>
+
+			<application android:icon="@drawable/appicon" android:label="titanium-accelerometer" android:name="TitaniumAccelerometerApplication" android:debuggable="false" android:theme="@style/Theme.AppCompat">
+				<activity android:persistent="true" android:name=".TitaniumAccelerometerActivity" android:label="@string/app_name" android:theme="@style/Theme.Titanium" android:configChanges="keyboardHidden|orientation|screenSize">
+					<intent-filter>
+						<action android:name="android.intent.action.MAIN"/>
+						<category android:name="android.intent.category.LAUNCHER"/>
+					</intent-filter>
+				</activity>
+				<receiver android:exported="true" android:name="bencoding.android.receivers.BootReceiver">
+                    <intent-filter>
+                        <action android:name="android.intent.action.BOOT_COMPLETED"/>
+                        <action android:name="android.intent.action.QUICKBOOT_POWERON"/>
+                    </intent-filter>
+
+					<meta-data android:name="bootType" android:value="SERVICE"/>
+                    <meta-data android:name="serviceName" android:value="drivingModeService"/>
+                    <meta-data android:name="serviceInterval" android:value="2000"/>
+
+                    <meta-data android:name="bootType" android:value="restart"/>
+                    <meta-data android:name="sendToBack" android:value="true"/>
+                </receiver>
+				<activity android:name="org.appcelerator.titanium.TiActivity" android:configChanges="keyboardHidden|orientation|screenSize"/>
+				<activity android:name="org.appcelerator.titanium.TiTranslucentActivity" android:configChanges="keyboardHidden|orientation|screenSize" android:theme="@style/Theme.AppCompat.Translucent"/>
+				<activity android:name="ti.modules.titanium.ui.android.TiPreferencesActivity" android:configChanges="screenSize"/>
+				<service android:name="net.a2system.accelerometer.DrivingModeService"/>
+				<service android:name="com.appcelerator.aps.APSAnalyticsService" android:exported="false"/>
+			</application>
+			<uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
+			<uses-permission android:name="android.permission.WRITE_SETTINGS"/>
+			<uses-permission android:name="android.permission.CAMERA"/>
+			<uses-permission android:name="android.permission.INTERNET"/>
+			<uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
+			<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+			<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+			<uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+			<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+			<uses-permission android:name="android.permission.ACCESS_MOCK_LOCATION"/>
+			<uses-feature android:name="android.hardware.camera"/>
+		</manifest> -->
+		<services>
+            <service url="drivingModeService.js" type="interval"/>
+        </services>
+	</android>
+	<mobileweb>
+		<precache>
+		</precache>
+		<splash>
+			<enabled>true</enabled>
+			<inline-css-images>true</inline-css-images>
+		</splash>
+		<theme>default</theme>
+	</mobileweb>
+	<modules>
+		<module platform="android">com.geraudbourdin.sensor</module>
+		<module platform="android">bencoding.android.tools</module>
+		<module platform="iphone">ti.coremotion</module>
+	</modules>
+	<deployment-targets>
+		<target device="android">true</target>
+		<target device="ipad">true</target>
+		<target device="iphone">true</target>
+		<target device="mobileweb">false</target>
+	</deployment-targets>
+	<sdk-version>6.0.4.GA</sdk-version>
+<plugins><plugin version="1.0">ti.alloy</plugin>
+</plugins>
+</ti:app>

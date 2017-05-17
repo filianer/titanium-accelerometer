@@ -1,0 +1,28 @@
+<Alloy>
+	<Window backgroundColor="white" layout="vertical" class="adjustPan">
+		<Button id="prueba2" backgroundColor="#1976D2" color="white" onClick="prueba2">Prueba2</Button>
+		<Label>LIMIT TIME:</Label>
+		<TextField id="inputTime" color="black" width="Ti.UI.FILL" height="40" value="500" left="10" right="10"  borderColor="black" borderWidth="1" keyboardType="Ti.UI.KEYBOARD_TYPE_NUMBER_PAD"/>
+		<Label>MIN MOVE:</Label>
+		<TextField id="inputMove" color="black" width="Ti.UI.FILL" height="40" value="0.000001" left="10" right="10"  borderColor="black" borderWidth="1" keyboardType="Ti.UI.KEYBOARD_TYPE_NUMBER_PAD"/>
+		<Button onClick="setValues">SET</Button>
+		<Label id="finalMovement" class="label"></Label>
+		<Label id="labelTimestamp" class="label"></Label>
+		<Label id="labelx" class="label"></Label>
+		<Label id="labely" class="label"></Label>
+		<Label id="labelz" class="label"></Label>
+		<Label id="movement" class="label"></Label>
+
+
+		<Label id="respVertical" top="5" backgroundColor="#263238" color="white" class="labelResp"></Label>
+		<Label id="respHorizontal" backgroundColor="#E64A19" color="white" class="labelResp"></Label>
+		<View height="Ti.UI.SIZE">
+			<Button id="on" width="40%" left="5%" backgroundColor="#1976D2" color="white" onClick="changeStart">ENCENDER</Button>
+			<Button  width="40%" right="5%" backgroundColor="#00897B" color="white" onClick="clean">LIMPIAR</Button>
+		</View>
+
+
+		<ScrollView height="400" scrollType="horizontal" id="chart" width="100%"  showHorizontalScrollIndicator="true" layout="horizontal">
+		</ScrollView>
+	</Window>
+</Alloy>

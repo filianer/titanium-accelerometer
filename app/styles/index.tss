@@ -1,0 +1,31 @@
+".container": {
+	backgroundColor:"white"
+}
+
+"Label": {
+	width: Ti.UI.SIZE,
+	height: Ti.UI.SIZE,
+	color: "#000"
+}
+
+"#label": {
+	color:'black',
+    font:{fontSize:20},
+    text:'-',
+    top:20, left:10,
+    width:300
+}
+
+".labelResp": {
+	font:{fontSize:25},
+}
+
+".adjustPan[platform=android]":{
+    windowSoftInputMode:Ti.UI.Android.SOFT_INPUT_ADJUST_PAN
+}
+".bold": {
+	font:{
+		fontSize:25,
+		fontWeight: 'bold'
+	},
+}

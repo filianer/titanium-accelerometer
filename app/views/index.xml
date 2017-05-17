@@ -1,0 +1,110 @@
+<Alloy>
+	<Window id="win" backgroundColor="white" layout="vertical" class="adjustPan">
+		<View platform="ios" height="50"></View>
+		<ScrollView scrollType="vertical" height="100%" layout="vertical">
+			<View height="Ti.UI.SIZE" layout="horizontal" left="10" right="10">
+				<Label>TAMAÑO ARRAY MEDIA:</Label>
+				<TextField id="inputTime" color="black" width="Ti.UI.FILL" height="40" value="20" left="10" borderColor="black" borderWidth="1" keyboardType="Ti.UI.KEYBOARD_TYPE_NUMBER_PAD"/>
+			</View>
+			<View height="Ti.UI.SIZE" layout="horizontal" left="10" right="10">
+				<Label>MIN MOVE:</Label>
+				<TextField id="inputMove" color="black" width="Ti.UI.FILL" height="40" value="0.000001" left="10"  borderColor="black" borderWidth="1" keyboardType="Ti.UI.KEYBOARD_TYPE_NUMBER_PAD"/>
+			</View>
+			<Button onClick="setValues">SET</Button>
+			<Label id="finalMovement" class="label"></Label>
+			<Label id="labelTimestamp" class="label"></Label>
+			<Label id="timeClearAverage" class="label"></Label>
+
+			<View height="Ti.UI.SIZE" borderWidth="2" borderColor="gray" top="10">
+				<View width="50%" left="0" height="Ti.UI.SIZE" layout="vertical">
+					<!-- CURRENT -->
+					<View height="Ti.UI.SIZE" left="50">
+						<Label class="label" left="0" width="20">x:</Label>
+						<Label id="labelx" class="label" textAlign="Ti.UI.TEXT_ALIGNMENT_RIGHT" width="25" left="15"></Label>
+						<Label class="label" left="42">.</Label>
+						<Label id="labelxdecimal" left="48" textAlign="Ti.UI.TEXT_ALIGNMENT_LEFT" class="label"></Label>
+					</View>
+					<View height="Ti.UI.SIZE" left="50">
+						<Label class="label" left="0" width="20">y:</Label>
+						<Label id="labely" class="label" textAlign="Ti.UI.TEXT_ALIGNMENT_RIGHT" width="25" left="15"></Label>
+						<Label class="label" left="42">.</Label>
+						<Label id="labelydecimal" left="48" textAlign="Ti.UI.TEXT_ALIGNMENT_LEFT" class="label"></Label>
+					</View>
+					<View height="Ti.UI.SIZE" left="50">
+						<Label class="label" left="0" width="20">z:</Label>
+						<Label id="labelz" class="label" textAlign="Ti.UI.TEXT_ALIGNMENT_RIGHT" width="25" left="15"></Label>
+						<Label class="label" left="42">.</Label>
+						<Label id="labelzdecimal" left="48" textAlign="Ti.UI.TEXT_ALIGNMENT_LEFT" class="label"></Label>
+					</View>
+					<View height="Ti.UI.SIZE" left="50">
+						<Label class="label" left="0" width="20">a:</Label>
+						<Label id="labela" class="label" textAlign="Ti.UI.TEXT_ALIGNMENT_RIGHT" width="25" left="15"></Label>
+						<Label class="label" left="42">.</Label>
+						<Label id="labeladecimal" left="48" textAlign="Ti.UI.TEXT_ALIGNMENT_LEFT" class="label"></Label>
+					</View>
+					<View height="Ti.UI.SIZE" left="50">
+						<Label class="label" left="0" width="20">m:</Label>
+						<Label id="labelm" class="label" textAlign="Ti.UI.TEXT_ALIGNMENT_RIGHT" width="25" left="15"></Label>
+						<Label class="label" left="42">.</Label>
+						<Label id="labelmdecimal" left="48" textAlign="Ti.UI.TEXT_ALIGNMENT_LEFT" class="label"></Label>
+					</View>
+					<View layout="vertical" height="Ti.UI.SIZE" top="5">
+						<View width="Ti.UI.SIZE" height="Ti.UI.SIZE" backgroundColor="#1976D2">
+							<Label id="aceleraciones" left="5" right="5" width="Ti.UI.SIZE" color="white" class="bold">0</Label>
+						</View>
+						<Label class="label">Brusco Current</Label>
+					</View>
+				</View>
+				<View width="50%" right="0" height="Ti.UI.SIZE" layout="vertical">
+					<!-- MEDIA -->
+					<View height="Ti.UI.SIZE" left="50">
+						<Label class="label" left="0" width="20">x:</Label>
+						<Label id="labelxm" class="label" textAlign="Ti.UI.TEXT_ALIGNMENT_RIGHT" width="25" left="15"></Label>
+						<Label class="label" left="42">.</Label>
+						<Label id="labelxmdecimal" left="48" textAlign="Ti.UI.TEXT_ALIGNMENT_LEFT" class="label"></Label>
+					</View>
+					<View height="Ti.UI.SIZE" left="50">
+						<Label class="label" left="0" width="20">y:</Label>
+						<Label id="labelym" class="label" textAlign="Ti.UI.TEXT_ALIGNMENT_RIGHT" width="25" left="15"></Label>
+						<Label class="label" left="42">.</Label>
+						<Label id="labelymdecimal" left="48" textAlign="Ti.UI.TEXT_ALIGNMENT_LEFT" class="label"></Label>
+					</View>
+					<View height="Ti.UI.SIZE" left="50">
+						<Label class="label" left="0" width="20">z:</Label>
+						<Label id="labelzm" class="label" textAlign="Ti.UI.TEXT_ALIGNMENT_RIGHT" width="25" left="15"></Label>
+						<Label class="label" left="42">.</Label>
+						<Label id="labelzmdecimal" left="48" textAlign="Ti.UI.TEXT_ALIGNMENT_LEFT" class="label"></Label>
+					</View>
+					<View height="Ti.UI.SIZE" left="50">
+						<Label class="label" left="0" width="20">a:</Label>
+						<Label id="labelam" class="label" textAlign="Ti.UI.TEXT_ALIGNMENT_RIGHT" width="25" left="15"></Label>
+						<Label class="label" left="42">.</Label>
+						<Label id="labelamdecimal" left="48" textAlign="Ti.UI.TEXT_ALIGNMENT_LEFT" class="label"></Label>
+					</View>
+					<View height="Ti.UI.SIZE" left="50">
+						<Label class="label" left="0" width="20">m:</Label>
+						<Label id="labelmm" class="label" textAlign="Ti.UI.TEXT_ALIGNMENT_RIGHT" width="25" left="15"></Label>
+						<Label class="label" left="42">.</Label>
+						<Label id="labelmmdecimal" left="48" textAlign="Ti.UI.TEXT_ALIGNMENT_LEFT" class="label"></Label>
+					</View>
+					<View layout="vertical" height="Ti.UI.SIZE" top="5">
+						<View width="Ti.UI.SIZE" height="Ti.UI.SIZE" backgroundColor="#E64A19">
+							<Label id="frenadas" left="5" right="5" color="white" class="bold">0</Label>
+						</View>
+						<Label class="label">Brusco Media</Label>
+					</View>
+				</View>
+			</View>
+
+
+			<Label id="speed" class="bold" top="5" bottom="5">0 km/h</Label>
+			<View height="Ti.UI.SIZE" top="10">
+				<Button id="on" width="40%" left="5%" backgroundColor="#1976D2" color="white" onClick="changeStart">APAGAR</Button>
+				<Button  width="40%" right="5%" backgroundColor="#00897B" color="white" onClick="clean">LIMPIAR</Button>
+			</View>
+
+			<ScrollView height="100" scrollType="horizontal" id="chart" width="100%"  showHorizontalScrollIndicator="true" layout="horizontal">
+			</ScrollView>
+		</ScrollView>
+	</Window>
+</Alloy>

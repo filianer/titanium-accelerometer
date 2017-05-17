@@ -1,0 +1,347 @@
+<h1>ti<em>sensor</em>demo_app</h1>
+
+<p>Demo project for the all in one Titanium sensor module. (Android only).</p>
+
+<h2>List of avaliable sensors :</h2>
+
+<ul><li><p>TYPE_ACCELEROMETER : 
+				Measures the acceleration force in m/s2 that is applied to a device on all three physical axes (x, y, and z), including the force of gravity.
+				Common Uses : Motion detection (shake, tilt, etc.).</p></li><li><p>TYPE<em>AMBIENT</em>TEMPERATURE :
+				Measures the ambient room temperature in degrees Celsius (°C).
+				Common Uses : Monitoring air temperatures.						</p></li><li><p>TYPE_GRAVITY :
+				Measures the force of gravity in m/s2 that is applied to a device on all three physical axes (x, y, z).
+				Common Uses : Motion detection (shake, tilt, etc.).</p></li><li><p>TYPE_GYROSCOPE : 	
+				Measures a device&#39;s rate of rotation in rad/s around each of the three physical axes (x, y, and z).
+				Common Uses : Rotation detection (spin, turn, etc.).				</p></li><li><p>TYPE_LIGHT : 
+				Measures the ambient light level (illumination) in lx.
+				Common Uses : Controlling screen brightness.</p></li><li><p>TYPE<em>LINEAR</em>ACCELERATION : 
+				Measures the acceleration force in m/s2 that is applied to a device on all three physical axes (x, y, and z), excluding the force of gravity.
+				Common Uses : Monitoring acceleration along a single axis.				</p></li><li><p>TYPE<em>MAGNETIC</em>FIELD : 
+				Measures the ambient geomagnetic field for all three physical axes (x, y, z) in μT.
+				Common Uses : Creating a compass.</p></li><li><p>TYPE_ORIENTATION :
+				Measures degrees of rotation that a device makes around all three physical axes (x, y, z). As of API level 3 you can obtain the inclination matrix and rotation matrix for a device by using the gravity sensor and the geomagnetic field sensor in conjunction with the getRotationMatrix() method.		
+				Common Uses : Determining device position.</p></li><li><p>TYPE_PRESSURE : 
+				Measures the ambient air pressure in hPa or mbar.
+				Common Uses : Monitoring air pressure changes.</p></li><li><p>TYPE_PROXIMITY :
+				Measures the proximity of an object in cm relative to the view screen of a device. This sensor is typically used to determine whether a handset is being held up to a person&#39;s ear.
+				Common Uses : Phone position during a call.		</p></li><li><p>TYPE<em>RELATIVE</em>HUMIDITY :
+				Measures the relative ambient humidity in percent (%).
+				Common Uses : Monitoring dewpoint, absolute, and relative humidity.</p></li><li><p>TYPE<em>ROTATION</em>VECTOR : 
+				Measures the orientation of a device by providing the three elements of the device&#39;s rotation vector.			
+				Common Uses : Motion detection and rotation detection.</p></li><li><p>TYPE<em>GEOMAGNETIC</em>ROTATION_VECTOR</p></li><li>TYPE<em>GYROSCOPE</em>UNCALIBRATED</li><li>TYPE<em>LINEAR</em>ACCELERATION</li><li>TYPE<em>MAGNETIC</em>FIELD_UNCALIBRATED</li><li>TYPE<em>SIGNIFICANT</em>MOTION</li><li>TYPE<em>STEP</em>COUNTER</li><li>TYPE<em>STEP</em>DETECTOR</li><li>TYPE<em>GAME</em>ROTATION_VECTOR: untested.</li><li>TYPE<em>HEART</em>RATE : not in API 19, to enabled it, fork, uncomment and compile https://github.com/GeraudBourdin/ti_sensor with API 21.</li></ul>
+
+<hr/>
+
+<h2>Usage :</h2>
+
+<p><code></code>`javascript
+// Import it into your mobile project and add it to your controller :</p>
+
+<p>var sensor = require(&#39;com.geraudbourdin.sensor&#39;);</p>
+
+<p>Get list of sensors avaliable on your mobile :</p>
+
+<p>var sensorList = sensor.getSensorList(sensor.TYPE_ALL);</p>
+
+<p>// it return list of constant sensors. 
+// Just test if sensor is sensor you need is avaliable :</p>
+
+<p>var sensorsCallback = function(e) {
+	if(e.sType == sensor.TYPE<em>ACCELEROMETER){
+		// do stuff with your datas. (see demo app for complete usage and examples).
+	}
+};
+for (i in sensorList){
+	if( typeof  sensorsId[sensorList[i]] === &#39;undefined&#39; ){
+		continue;
+	}
+	if(sensorList[i] == sensor.TYPE</em>ACCELEROMETER){
+		// do your stuff like enable it before set event.
+		sensor.setSensor(sensor.TYPE_ACCELEROMETER);
+		// In JS don&#39;t forget to set your function callback before your event !
+		sensor.addEventListener(&#39;update&#39;, sensorsCallback);
+	}
+}</p>
+
+<p>$.win.addEventListener(&#39;open&#39;, function(e) {
+	sensor.addEventListener(&#39;update&#39;, sensorsCallback);
+});</p>
+
+<p>$.win.addEventListener(&#39;close&#39;, function() {
+	sensor.removeEventListener(&#39;update&#39;, sensorsCallback);
+	$.destroy();
+});</p>
+
+<p>$.win.addEventListener(&#39;pause&#39;, function(e) {
+	sensor.removeEventListener(&#39;update&#39;, sensorsCallback);
+});</p>
+
+<p>$.win.addEventListener(&#39;resume&#39;, function(e) {
+	sensor.addEventListener(&#39;update&#39;, sensorsCallback);
+});
+<code></code>`</p>
+
+<h3>List of constants:</h3>
+
+<p><code></code>`javascript
+	sensor.TYPE<em>ACCELEROMETER
+	sensor.TYPE</em>AMBIENT<em>TEMPERATURE
+	sensor.TYPE</em>GAME<em>ROTATION</em>VECTOR
+	sensor.TYPE<em>GEOMAGNETIC</em>ROTATION<em>VECTOR
+	sensor.TYPE</em>GRAVITY
+	sensor.TYPE<em>GYROSCOPE
+	sensor.TYPE</em>GYROSCOPE<em>UNCALIBRATED
+	sensor.TYPE</em>LIGHT
+	sensor.TYPE<em>LINEAR</em>ACCELERATION
+	sensor.TYPE<em>MAGNETIC</em>FIELD
+	sensor.TYPE<em>MAGNETIC</em>FIELD<em>UNCALIBRATED
+	sensor.TYPE</em>ORIENTATION
+	sensor.TYPE<em>PRESSURE
+	sensor.TYPE</em>PROXIMITY
+	sensor.TYPE<em>RELATIVE</em>HUMIDITY
+	sensor.TYPE<em>ROTATION</em>VECTOR
+	sensor.TYPE<em>SIGNIFICANT</em>MOTION
+	sensor.TYPE<em>STEP</em>COUNTER
+	sensor.TYPE<em>STEP</em>DETECTOR
+	//sensorsId[sensor.TYPE<em>HEART</em>RATE (have to compile module with api 21 to use it).</p>
+
+<pre><code>sensor.SCREEN_BRIGHTNESS_MODE_MANUAL
+sensor.SCREEN_BRIGHTNESS_MODE_AUTOMATIC</code></pre>
+
+<p><code></code>`</p>
+
+<h2>functions :</h2>
+
+<h3>get full list of sensors :</h3>
+
+<p><code>javascript
+ 	sensor.getSensorList(sensor.TYPE_ALL);
+</code></p>
+
+<h3>get infos for a specific sensor type :</h3>
+
+<p><code></code>`javascript 
+	sensor.getSensorInfos(sensor.TYPE_ACCELEROMETER);	</p>
+
+<pre><code>//return array  : 
+	var infos = sensor.getSensorInfos(type);
+	$.name.text = infos[&#39;name&#39;];
+	$.constant.text = infos[&#39;constant&#39;];
+	$.version.text = infos[&#39;version&#39;];
+	$.resolution.text = infos[&#39;resolution&#39;];
+	$.power.text = infos[&#39;power&#39;];
+	$.vendor.text = infos[&#39;vendor&#39;];
+	$.maximumRange.text = infos[&#39;maximumRange&#39;];
+	$.minDelay.text = infos[&#39;minDelay&#39;];</code></pre>
+
+<p><code></code>`		</p>
+
+<h3>get the current brightness mode :</h3>
+
+<p><code>javascript 
+	sensor.getBrightnessMode();
+	// return sensor.SCREEN_BRIGHTNESS_MODE_MANUAL or sensor.SCREEN_BRIGHTNESS_MODE_AUTOMATIC
+</code>	</p>
+
+<h3>set the current brightness mode :</h3>
+
+<p><code>javascript 
+	// accept sensor.SCREEN_BRIGHTNESS_MODE_MANUAL or sensor.SCREEN_BRIGHTNESS_MODE_AUTOMATIC
+	sensor.setBrightnessMode(sensor.SCREEN_BRIGHTNESS_MODE_MANUAL);
+</code>	</p>
+
+<h3>get the current screen brightness value (between 0 AND 255) :</h3>
+
+<p><code>javascript 
+	sensor.getScreenBrightness();
+</code>	</p>
+
+<h3>set the screen brightness value (between 0 AND 255) :</h3>
+
+<p><code>javascript 
+	sensor.setScreenBrightness(255);
+</code>	</p>
+
+<h3>get if phone have flash light :</h3>
+
+<p><code>javascript 
+	// return true or false. 
+	sensor.hasFlashLight();
+</code>	</p>
+
+<h3>set flash light on :</h3>
+
+<p><code>javascript 
+	sensor.setflashLightOn();
+</code>	</p>
+
+<h3>set flash light off :</h3>
+
+<p><code>javascript 
+	sensor.setflashLightOff();
+</code>	</p>
+
+<h3>Return values for differents types :</h3>
+
+<h4>TYPE_ACCELEROMETER :</h4>
+
+<pre><code> All values are in SI units (m/s^2)
+	e.x: Acceleration minus Gx on the x-axis filtered with a meanFilter to reduce noize and smooth the sensor inputs.
+	e.y: Acceleration minus Gy on the y-axis filtered with a meanFilter to reduce noize and smooth the sensor inputs.
+	e.z: Acceleration minus Gz on the z-axis filtered with a meanFilter to reduce noize and smooth the sensor inputs.
+
+	e.linearAccelerationX : same as e.x without gravity as described on android documentation : http://developer.android.com/reference/android/hardware/SensorEvent.html#values
+	e.linearAccelerationY : same as e.y without gravity as described on android documentation : http://developer.android.com/reference/android/hardware/SensorEvent.html#values
+	e.linearAccelerationZ : same as e.z without gravity as described on android documentation : http://developer.android.com/reference/android/hardware/SensorEvent.html#values</code></pre>
+
+<h4>TYPE<em>MAGNETIC</em>FIELD :</h4>
+
+<pre><code>	All values are in micro-Tesla (uT) and measure the ambient magnetic field in the X, Y and Z axis filtered with a meanFilter to reduce noize and smooth the sensor inputs.
+		e.x : in micro-Tesla (uT) and measure the ambient magnetic field in the X axis.
+		e.y : in micro-Tesla (uT) and measure the ambient magnetic field in the Y axis.
+		e.z : in micro-Tesla (uT) and measure the ambient magnetic field in the Z axis.
+		e.magnetometer : ready to use value for a magnetometer app (metal detector) in micro-Tesla (uT).
+
+	If used in combination with the TYPE_ACCELEROMETER, extra values are provided :
+		e.compassRotation : ready to use value for a compass app. Get the offset degree for magnetic orientation (see demo app for more info on this value).
+
+	If you only needs azimuth pitch an roll values consider using Twisti module (https://github.com/appcelerator-developer-relations/Forging-Titanium/tree/master/ep-014/Twisti).
+	Azimuth (degrees of rotation around the z axis). This is the angle between magnetic north and the device&#39;s y axis. For example, if the device&#39;s y axis is aligned with magnetic north this value is 0, and if the device&#39;s y axis is pointing south this value is 180. Likewise, when the y axis is pointing east this value is 90 and when it is pointing west this value is 270.
+	Pitch (degrees of rotation around the x axis). This value is positive when the positive z axis rotates toward the positive y axis, and it is negative when the positive z axis rotates toward the negative y axis. The range of values is 180 degrees to -180 degrees.
+	Roll (degrees of rotation around the y axis). This value is positive when the positive z axis rotates toward the positive x axis, and it is negative when the positive z axis rotates toward the negative x axis. The range of values is 90 degrees to -90 degrees.
+		e.azimuth : values returned from the getRotationMatrix, remapCoordinateSystem, and getOrientation function from the android lib. (See http://www.appcelerator.com/blog/2011/11/forging-titanium-episode-15-twisti-part-2-3d-with-three-js/ for more info)
+		e.pitch : values returned from the getRotationMatrix, remapCoordinateSystem and getOrientation function from the android lib. (See http://www.appcelerator.com/blog/2011/11/forging-titanium-episode-15-twisti-part-2-3d-with-three-js/ for more info)
+		e.roll : values returned from the getRotationMatrix, remapCoordinateSystem and getOrientation function from the android lib. (See http://www.appcelerator.com/blog/2011/11/forging-titanium-episode-15-twisti-part-2-3d-with-three-js/ for more info)</code></pre>
+
+<h4>TYPE<em>AMBIENT</em>TEMPERATURE :</h4>
+
+<pre><code>	Ambient (room) temperature
+		e.celcius : ambient (room) temperature in degree Celsius.
+		e.fahrenheit : ambient (room) temperature in degree Fahrenheit.</code></pre>
+
+<h4>TYPE<em>GAME</em>ROTATION_VECTOR :</h4>
+
+<pre><code>	Identical to TYPE_ROTATION_VECTOR except that it doesn&#39;t use the geomagnetic field. Therefore the Y axis doesn&#39;t point north, but instead to some other reference, that reference is allowed to drift by the same order of magnitude as the gyroscope drift around the Z axis.
+	In the ideal case, a phone rotated and returning to the same real-world orientation will report the same game rotation vector (without using the earth&#39;s geomagnetic field). However, the orientation may drift somewhat over time. This sensor will not have the estimated heading accuracy value.
+		e.x : rotation vector component along the x axis. x*sin(θ/2).
+		e.y : rotation vector component along the y axis. y*sin(θ/2).
+		e.z : rotation vector component along the z axis. z*sin(θ/2).
+		e.cos:  cos(θ/2)</code></pre>
+
+<h4>TYPE<em>GEOMAGNETIC</em>ROTATION_VECTOR :</h4>
+
+<pre><code>	The geomagnetic rotation vector sensor is similar to the Rotation Vector Sensor, but it uses a magnetometer instead of a gyroscope. The accuracy of this sensor is lower than the normal rotation vector sensor, but the power consumption is reduced. Only use this sensor if you want to collect some rotation information in the background without draining too much battery. This sensor is most useful when used in conjunction with batching.
+		e.x : rotation vector component along the x axis. x*sin(θ/2).
+		e.y : rotation vector component along the y axis. y*sin(θ/2).
+		e.z : rotation vector component along the z axis. z*sin(θ/2).</code></pre>
+
+<h4>TYPE_GRAVITY :</h4>
+
+<pre><code>	A three dimensional vector indicating the direction and magnitude of gravity. Units are m/s^2. The coordinate system is the same as is used by the acceleration sensor.
+		e.x 
+		e.y  
+		e.z </code></pre>
+
+<h4>TYPE_GYROSCOPE :</h4>
+
+<pre><code>	All values are in radians/second and measure the rate of rotation around the device&#39;s local X, Y and Z axis. The coordinate system is the same as is used for the acceleration sensor. Rotation is positive in the counter-clockwise direction. That is, an observer looking from some positive location on the x, y or z axis at a device positioned on the origin would report positive rotation if the device appeared to be rotating counter clockwise. Note that this is the standard mathematical definition of positive rotation and does not agree with the definition of roll given earlier.
+		e.x : Angular speed around the x-axis
+		e.y : Angular speed around the y-axis
+		e.z : Angular speed around the z-axis	
+
+	Additionnal values from the android documentation that are not fully explained (see http://developer.android.com/reference/android/hardware/SensorEvent.html#values for more infos ) : 
+	Typically the output of the gyroscope is integrated over time to calculate a rotation describing the change of angles over the timestep.
+		e.radianX : updated rotation around the x-axis in radian.
+		e.radianY : updated rotation around the y-axis in radian.
+		e.radianZ : updated rotation around the z-axis in radian.	
+		e.degreesX : updated rotation around the x-axis in degrees.
+		e.degreesY : updated rotation around the y-axis in degrees.
+		e.degreesZ : updated rotation around the z-axis in degrees.	</code></pre>
+
+<h4>TYPE<em>GYROSCOPE</em>UNCALIBRATED :</h4>
+
+<pre><code>	All values are in radians/second and measure the rate of rotation around the device&#39;s local X, Y and Z axis. The coordinate system is the same as is used for the acceleration sensor. Rotation is positive in the counter-clockwise direction. That is, an observer looking from some positive location on the x, y or z axis at a device positioned on the origin would report positive rotation if the device appeared to be rotating counter clockwise. Note that this is the standard mathematical definition of positive rotation and does not agree with the definition of roll given earlier.
+		e.x : Angular speed around the x-axis
+		e.y : Angular speed around the y-axis
+		e.z : Angular speed around the z-axis	</code></pre>
+
+<h4>TYPE<em>HEART</em>RATE :</h4>
+
+<pre><code>	Heart rate monitor (not tested).
+		e.rate : heart rate int.</code></pre>
+
+<h4>TYPE_LIGHT :</h4>
+
+<pre><code>	Ambient light level in SI lux units
+		e.lux : Ambient light level.</code></pre>
+
+<h4>TYPE<em>LINEAR</em>ACCELERATION :</h4>
+
+<pre><code>	A three dimensional vector indicating acceleration along each device axis, not including gravity. All values have units of m/s^2. The coordinate system is the same as is used by the acceleration sensor.
+		e.x : Acceleration around the x-axis
+		e.y : Acceleration around the y-axis
+		e.z : Acceleration around the z-axis	</code></pre>
+
+<h4>TYPE<em>MAGNETIC</em>FIELD_UNCALIBRATED :</h4>
+
+<pre><code>	Similar to TYPE_MAGNETIC_FIELD, but the hard iron calibration is reported separately instead of being included in the measurement. Factory calibration and temperature compensation will still be applied to the &quot;uncalibrated&quot; measurement. Assumptions that the magnetic field is due to the Earth&#39;s poles is avoided.
+
+	x_uncalib, y_uncalib, z_uncalib are the measured magnetic field in X, Y, Z axes. Soft iron and temperature calibrations are applied. But the hard iron calibration is not applied. The values are in micro-Tesla (uT).
+		e.x_uncalib
+		e.y_uncalib
+		e.z_uncalib
+	x_bias, y_bias, z_bias give the iron bias estimated in X, Y, Z axes. Each field is a component of the estimated hard iron calibration. The values are in micro-Tesla (uT).
+		e.x_bias
+		e.y_bias
+		e.z_bias</code></pre>
+
+<h4>TYPE_PROXIMITY :</h4>
+
+<pre><code>	Proximity sensor distance measured in centimeters
+	Note: Some proximity sensors only support a binary near or far measurement. In this case, the sensor should report its maximum range value in the far state and a lesser value in the near state.
+		e.cm : distance between phone and obstacle in centimeter.</code></pre>
+
+<h4>TYPE<em>RELATIVE</em>HUMIDITY :</h4>
+
+<pre><code>		e.percent : Relative ambient air humidity in percent.</code></pre>
+
+<h4>TYPE<em>ROTATION</em>VECTOR</h4>
+
+<pre><code>	The rotation vector represents the orientation of the device as a combination of an angle and an axis, in which the device has rotated through an angle θ around an axis &lt;x, y, z&gt;.
+	The three elements of the rotation vector are &lt;x*sin(θ/2), y*sin(θ/2), z*sin(θ/2)&gt;, such that the magnitude of the rotation vector is equal to sin(θ/2), and the direction of the rotation vector is equal to the direction of the axis of rotation.
+	The three elements of the rotation vector are equal to the last three components of a unit quaternion &lt;cos(θ/2), x*sin(θ/2), y*sin(θ/2), z*sin(θ/2)&gt;.
+	Elements of the rotation vector are unitless. The x,y, and z axis are defined in the same way as the acceleration sensor.
+	The reference coordinate system is defined as a direct orthonormal basis, where:
+	X is defined as the vector product Y.Z (It is tangential to the ground at the device&#39;s current location and roughly points East).
+	Y is tangential to the ground at the device&#39;s current location and points towards magnetic north.
+	Z points towards the sky and is perpendicular to the ground.
+
+		e.x : rotation vector component along the x axis. x*sin(θ/2).
+		e.y : rotation vector component along the y axis. y*sin(θ/2).
+		e.z : rotation vector component along the z axis. z*sin(θ/2).
+		e.cos:  cos(θ/2)
+		e.headingAccuracy estimated heading Accuracy (in radians) (-1 if unavailable).</code></pre>
+
+<h4>TYPE<em>SIGNIFICANT</em>MOTION :</h4>
+
+<pre><code>	e.motion : 1.0 when the sensor triggers. 1.0 is the only allowed value.</code></pre>
+
+<h4>TYPE<em>STEP</em>COUNTER</h4>
+
+<pre><code>This sensor also triggers an event upon each detected step, but instead delivers the total accumulated number of steps since this sensor was first registered by an app.
+	e.val :  returns the number of steps taken by the user since the last reboot while activated.
+	e.count :  returns the number of steps taken by the user since the event is registered.</code></pre>
+
+<h4>TYPE<em>STEP</em>DETECTOR</h4>
+
+<pre><code>This sensor triggers an event each time the user takes a step. Upon each user step, this sensor delivers an event with a value of 1.0 and a timestamp indicating when the step occurred.
+	e.count : returns the number of steps taken by the user since the event is registered. 		
+
+Be aware that these two step sensors don&#39;t always deliver the same results. The TYPE_STEP_COUNTER events occur with a higher latency than those from TYPE_STEP_DETECTOR, but that&#39;s because the TYPE_STEP_COUNTER algorithm does more processing to eliminate false positives. So the TYPE_STEP_COUNTER may be slower to deliver events, but its results should be more accurate.</code></pre>
+
+<h4>TYPE_ORIENTATION :</h4>
+
+<pre><code>All values are angles in degrees. Note: This definition is different from yaw, pitch and roll used in aviation where the X axis is along the long side of the plane (tail to nose).
+	e.orientation : Azimuth, angle between the magnetic north direction and the y-axis, around the z-axis (0 to 359). 0=North, 90=East, 180=South, 270=West.
+	e.pitch : Pitch, rotation around x-axis (-180 to 180), with positive values when the z-axis moves toward the y-axis.
+	e.roll : Roll, rotation around the x-axis (-90 to 90) increasing as the device moves clockwise.</code></pre>

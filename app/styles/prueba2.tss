@@ -1,0 +1,16 @@
+".labelResp": {
+	font:{fontSize:25},
+}
+
+"Label": {
+	width: Ti.UI.SIZE,
+	height: Ti.UI.SIZE,
+	color: "#000"
+}
+
+".bold": {
+	font:{
+		fontSize:25,
+		fontWeight: 'bold'
+	},
+}
